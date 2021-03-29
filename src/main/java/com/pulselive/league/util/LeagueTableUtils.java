@@ -5,6 +5,7 @@ import com.pulselive.league.model.LeagueTableEntry;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class LeagueTableUtils {
 
@@ -57,5 +58,27 @@ public class LeagueTableUtils {
         });
 
         return leagueTableEntries;
+    }
+
+    /**
+     * Method to print the table entries
+     * @param leagueTableEntries
+     */
+    public static void printTableEntries(List<LeagueTableEntry> leagueTableEntries) {
+
+        System.out.println("\n--------------------------------------------------------------------------------------------------------");
+        System.out.println("\tLeague Table");
+        System.out.println("--------------------------------------------------------------------------------------------------------");
+        System.out.format("%10s%10s%10s%10s%10s%10s%10s%10s%10s%10s%n", "Position", "Club", "Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points" );
+
+        AtomicInteger runCount = new AtomicInteger(1);
+        leagueTableEntries.forEach(leagueTableEntry -> {
+                    System.out.format("%10d%10s%10d%10d%10d%10d%10d%10d%10d%10d%n", runCount.getAndIncrement(),
+                            leagueTableEntry.getTeamName(), leagueTableEntry.getPlayed(), leagueTableEntry.getWon(),
+                            leagueTableEntry.getDrawn(), leagueTableEntry.getLost(), leagueTableEntry.getGoalsFor(),
+                            leagueTableEntry.getGoalsAgainst(), leagueTableEntry.getGoalDifference(),
+                            leagueTableEntry.getPoints());
+        });
+        System.out.println("--------------------------------------------------------------------------------------------------------");
     }
 }

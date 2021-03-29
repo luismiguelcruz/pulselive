@@ -3,6 +3,7 @@ package com.pulselive.league.service;
 import com.google.common.collect.ImmutableList;
 import com.pulselive.league.model.LeagueTableEntry;
 import com.pulselive.league.model.Match;
+import com.pulselive.league.util.LeagueTableUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -30,9 +31,9 @@ public class LeagueTableTest {
     @MethodSource("invalidResults")
     public void invalidResults(List<Match> matches){
         final LeagueTable table = new LeagueTable(matches);
-        final List<LeagueTableEntry> list = table.getTableEntries();
+        final List<LeagueTableEntry> tableEntries = table.getTableEntries();
 
-        assertThat(list).isEmpty();
+        assertThat(tableEntries).isEmpty();
     }
 
     @Test
@@ -42,9 +43,9 @@ public class LeagueTableTest {
         );
 
         final LeagueTable table = new LeagueTable(matches);
-        final List<LeagueTableEntry> list = table.getTableEntries();
+        final List<LeagueTableEntry> tableEntries = table.getTableEntries();
 
-        assertThat(list).isNotEmpty();
+        assertThat(tableEntries).isNotEmpty();
     }
 
     @Test
@@ -55,11 +56,11 @@ public class LeagueTableTest {
         matches = ImmutableList.of(match1, match2);
 
         final LeagueTable table = new LeagueTable(matches);
-        final List<LeagueTableEntry> list = table.getTableEntries();
+        final List<LeagueTableEntry> tableEntries = table.getTableEntries();
 
-        assertThat(list).hasSize(2);
-        checkExpectedTeamStats(list.get(0), "Team 1", 2,1, 1, 0, 4, 3, 4);
-        checkExpectedTeamStats(list.get(1), "Team 2", 2, 0, 1, 1, 3, 4, 1);
+        assertThat(tableEntries).hasSize(2);
+        checkExpectedTeamStats(tableEntries.get(0), "Team 1", 2,1, 1, 0, 4, 3, 4);
+        checkExpectedTeamStats(tableEntries.get(1), "Team 2", 2, 0, 1, 1, 3, 4, 1);
     }
 
     @Test
@@ -70,11 +71,11 @@ public class LeagueTableTest {
         );
 
         final LeagueTable table = new LeagueTable(matches);
-        final List<LeagueTableEntry> list = table.getTableEntries();
+        final List<LeagueTableEntry> tableEntries = table.getTableEntries();
 
-        assertThat(list).hasSize(2);
-        checkExpectedTeamStats(list.get(0), "Team 1", 2,2, 0, 0, 10, 3, 6);
-        checkExpectedTeamStats(list.get(1), "Team 2", 2,0, 0, 2, 3, 10, 0);
+        assertThat(tableEntries).hasSize(2);
+        checkExpectedTeamStats(tableEntries.get(0), "Team 1", 2,2, 0, 0, 10, 3, 6);
+        checkExpectedTeamStats(tableEntries.get(1), "Team 2", 2,0, 0, 2, 3, 10, 0);
     }
 
     @Test
@@ -91,15 +92,15 @@ public class LeagueTableTest {
         );
 
         final LeagueTable table = new LeagueTable(matches);
-        final List<LeagueTableEntry> list = table.getTableEntries();
+        final List<LeagueTableEntry> tableEntries = table.getTableEntries();
 
-        assertThat(list).hasSize(6);
-        checkExpectedTeamStats(list.get(0), "Team 1", 5,5, 0, 0, 17, 7, 15);
-        checkExpectedTeamStats(list.get(1), "Team 2", 3,1, 1, 1, 5, 6, 4);
-        checkExpectedTeamStats(list.get(2), "Team 3", 3,1, 1, 1, 4, 6, 4);
-        checkExpectedTeamStats(list.get(3), "Team 4", 1,0, 0, 1, 1, 2, 0);
-        checkExpectedTeamStats(list.get(4), "Team 5", 1,0, 0, 1, 1, 2, 0);
-        checkExpectedTeamStats(list.get(5), "Team 6", 3,0, 0, 3, 4, 9, 0);
+        assertThat(tableEntries).hasSize(6);
+        checkExpectedTeamStats(tableEntries.get(0), "Team 1", 5,5, 0, 0, 17, 7, 15);
+        checkExpectedTeamStats(tableEntries.get(1), "Team 2", 3,1, 1, 1, 5, 6, 4);
+        checkExpectedTeamStats(tableEntries.get(2), "Team 3", 3,1, 1, 1, 4, 6, 4);
+        checkExpectedTeamStats(tableEntries.get(3), "Team 4", 1,0, 0, 1, 1, 2, 0);
+        checkExpectedTeamStats(tableEntries.get(4), "Team 5", 1,0, 0, 1, 1, 2, 0);
+        checkExpectedTeamStats(tableEntries.get(5), "Team 6", 3,0, 0, 3, 4, 9, 0);
     }
 
     private void checkExpectedTeamStats(final LeagueTableEntry entry, final String expectedName, final int played,
