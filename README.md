@@ -9,7 +9,7 @@
 The purpose of this exercise is to demonstrate your ability to use 
 Java to build a dynamic football league table generator.
 
-#Task
+# Task
 Consider a league table for football. Each team plays a number of matches and the results
 of each match build the table. Given the code attached as a starting point build
 the LeagueTable class that can take a list of completed matches and produce a sorted 
@@ -31,7 +31,7 @@ In undertaking this task, please consider the following:
 * Any documentation / notes on build
 
 
-#Assumptions
+# Assumptions
 I have considered the next assumptions to make the program:
 - If the list of matches is empty or null, the result is going to be an empty list.
 
@@ -52,7 +52,7 @@ the format but I didn't add any call to this method in the current code. If it i
 LeagueTable.getTableEntries can be used as the input parameter to print it. 
 
 
-#Approach
+# Approach
 I have been thinking about two different approaches.
  - I thought about getting all the different teams and then filter by each of them getting all the results
   and setting them in a list. We could iterate over this small list getting all the points, scored goals, etc. 
@@ -60,5 +60,5 @@ I have been thinking about two different approaches.
  - As the normal amount of teams in each league doesn't seem too big, I decided instead, to consider match 
  by match and updating the set of matches with the proper team info (2 for each match).
  
-#Tests
+# Tests
 Open a command line. Navigate to project root folder and execute "mvn clean install".
