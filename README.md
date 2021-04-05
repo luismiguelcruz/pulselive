@@ -3,6 +3,7 @@
 + [Task](#Task)
 + [Assumptions](#Assumptions)
 + [Approach](#approach)
+- [Run Test](#Run Tests)
 
 # Introduction
 The purpose of this exercise is to demonstrate your ability to use 
@@ -46,6 +47,10 @@ will not be considered twice.
 - Any time that a team is checked, a ScoreType is created. A ScoreType is an enum that helps in the treatment
 of any team. It contains if the team won, if it drawn or lost. And the proper points earned in each situation. 
 
+- There is a function in LeagueTableUtils that given a list of LeagueTableEntry, prints the League table. I checked 
+the format but I didn't add any call to this method in the current code. If it is needed, the result of
+LeagueTable.getTableEntries can be used as the input parameter to print it. 
+
 
 # Approach
 I have been thinking about two different approaches.
@@ -55,3 +60,6 @@ I have been thinking about two different approaches.
  - As the normal amount of teams in each league doesn't seem too big, I decided instead, to consider match 
  by match and updating the set of matches with the proper team info (2 for each match).  
 
+
+#Run Tests
+Open a command line. Navigate to project root folder and execute "mvn clean install".
